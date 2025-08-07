@@ -3,22 +3,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /app
 
-# Atualiza e instala dependências básicas + ferramentas de build
+# Instala curl, unzip e wget
 RUN apt-get update && apt-get install -y \
     curl \
     unzip \
+    wget \
     ca-certificates \
-    python3 \
-    python3-pip \
-    build-essential \
-    gcc \
  && rm -rf /var/lib/apt/lists/*
 
-# Instala o gdown
-RUN pip3 install --no-cache-dir gdown
-
-# Copia o script
+# Copia o script de inicialização
 COPY start.sh .
 RUN chmod +x start.sh
 
+# Roda o script
 CMD ["bash", "start.sh"]
