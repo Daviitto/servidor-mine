@@ -2,14 +2,16 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-# Instalar ferramentas necessárias
-RUN apt update && apt install -y curl unzip
+# Instala curl, unzip, Python e o pip
+RUN apt update && \
+    apt install -y curl unzip python3 python3-pip && \
+    pip3 install --no-cache gdown
 
-# Copia o script para dentro do container
+# Copia o script
 COPY start.sh .
 
-# Dá permissão de execução ao script
+# Permissão
 RUN chmod +x start.sh
 
-# Executa o script ao iniciar
+# Inicia
 CMD ["bash", "start.sh"]
