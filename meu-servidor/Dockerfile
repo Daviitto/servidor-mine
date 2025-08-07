@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
@@ -15,3 +15,4 @@ RUN chmod +x start.sh
 
 # Inicia
 CMD ["bash", "start.sh"]
+
