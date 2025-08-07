@@ -3,18 +3,20 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 WORKDIR /app
 
-# instala wget, curl, unzip e certificados
+# Instala curl, unzip, python3, pip e gdown
 RUN apt-get update \
  && apt-get install -y \
     curl \
     unzip \
     ca-certificates \
-    wget \
+    python3 \
+    python3-pip \
+ && pip3 install --no-cache-dir gdown \
  && rm -rf /var/lib/apt/lists/*
 
-# copia o start.sh e garante permissão
+# Copia o script start.sh e dá permissão
 COPY start.sh .
 RUN chmod +x start.sh
 
-# executa o script
+# Executa o script
 CMD ["bash", "start.sh"]
